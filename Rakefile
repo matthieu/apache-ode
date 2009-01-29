@@ -30,24 +30,28 @@ ANNONGEN            = "annogen:annogen:jar:0.1.0"
 ANT                 = "ant:ant:jar:1.6.5"
 AXIOM               = [ group("axiom-api", "axiom-impl", "axiom-dom",
                         :under=>"org.apache.ws.commons.axiom", :version=>"1.2.5") ]
-AXIS2_ALL           = group("axis2-adb", "axis2-codegen", "axis2-kernel",
+AXIS2_ALL           = [group("axis2-adb", "axis2-codegen",
                         "axis2-java2wsdl", "axis2-jibx", "axis2-saaj", "axis2-xmlbeans",
-                        :under=>"org.apache.axis2", :version=>"1.3")
+                        :under=>"org.apache.axis2", :version=>"1.5-beta-2"),
+                      group("axis2-kernel",
+                        :under=>"org.apache.axis2", :version=>"1.5-beta-2-i1"),
+                      ]
 AXIS2_TEST          = group("httpcore", "httpcore-nio", "httpcore-niossl", 
                            :under=>"org.apache.httpcomponents", :version=>"4.0-alpha5")
 AXIS2_MODULES        = struct(
- :mods              => ["org.apache.rampart:rampart:mar:1.3", 
-                         "org.apache.rampart:rahas:mar:1.3",
-                         "org.apache.axis2:addressing:mar:1.3"],
+ :mods              => ["org.apache.rampart:rampart:mar:1.4", 
+                         "org.apache.rampart:rahas:mar:1.4",
+                         "org.apache.axis2:addressing:mar:1.4"],
  :libs              => [group("rampart-core", "rampart-policy", "rampart-trust",
                               :under=>"org.apache.rampart",
-                              :version=>"1.3"), 
+                              :version=>"1.4"), 
+                        "org.apache.axis2:axis2-transports:jar:1.0-i2", 
                         "org.apache.ws.security:wss4j:jar:1.5.3", 
                         "org.apache.santuario:xmlsec:jar:1.4.0",
                         "opensaml:opensaml:jar:1.1",
                         "bouncycastle:bcprov-jdk15:jar:132"] 
 )
-AXIS2_WAR           = "org.apache.axis2:axis2-webapp:war:1.3"
+AXIS2_WAR           = "org.apache.axis2:axis2-webapp:war:1.5-beta-2"
 BACKPORT            = "backport-util-concurrent:backport-util-concurrent:jar:3.0"
 COMMONS             = struct(
   :codec            =>"commons-codec:commons-codec:jar:1.3",

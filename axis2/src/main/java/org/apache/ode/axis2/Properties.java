@@ -178,7 +178,7 @@ public class Properties {
                 if (log.isWarnEnabled()) log.warn("Property Not Supported: " + PROP_HTTP_MAX_REDIRECTS);
             }
             if (properties.containsKey(PROP_JMS_REPLY_DESTINATION)) {
-                options.setProperty(JMSConstants.REPLY_PARAM, properties.get(PROP_JMS_REPLY_DESTINATION));
+                options.setProperty(JMSConstants.PARAM_REPLY_DESTINATION, properties.get(PROP_JMS_REPLY_DESTINATION));
             }
             if (properties.containsKey(PROP_JMS_REPLY_TIMEOUT)) {
                 String value = properties.get(PROP_JMS_REPLY_TIMEOUT);
