@@ -29,15 +29,16 @@ NEXT_VERSION = "1.3"
 ANNONGEN            = "annogen:annogen:jar:0.1.0"
 ANT                 = "ant:ant:jar:1.6.5"
 AXIOM               = [ group("axiom-api", "axiom-impl", "axiom-dom",
-                        :under=>"org.apache.ws.commons.axiom", :version=>"1.2.5") ]
+                        :under=>"org.apache.ws.commons.axiom", :version=>"1.2.8") ]
 AXIS2_ALL           = [group("axis2-adb", "axis2-codegen",
                         "axis2-java2wsdl", "axis2-jibx", "axis2-saaj", "axis2-xmlbeans",
                         :under=>"org.apache.axis2", :version=>"1.5-beta-2"),
                       group("axis2-kernel",
                         :under=>"org.apache.axis2", :version=>"1.5-beta-2-i1"),
                       ]
-AXIS2_TEST          = group("httpcore", "httpcore-nio", "httpcore-niossl", 
-                           :under=>"org.apache.httpcomponents", :version=>"4.0-alpha5")
+AXIS2_TEST          = [ group("httpcore", "httpcore-nio", 
+                           :under=>"org.apache.httpcomponents", :version=>"4.0-beta3"),
+                        group("httpcore-niossl", :under=>"org.apache.httpcomponents", :version=>"4.0-alpha5") ]
 AXIS2_MODULES        = struct(
  :mods              => ["org.apache.rampart:rampart:mar:1.4", 
                          "org.apache.rampart:rahas:mar:1.4",
@@ -45,7 +46,11 @@ AXIS2_MODULES        = struct(
  :libs              => [group("rampart-core", "rampart-policy", "rampart-trust",
                               :under=>"org.apache.rampart",
                               :version=>"1.4"), 
+                        group("woden-api", "woden-impl-dom", 
+                              :under=>"org.apache.woden",
+                              :version=>"1.0M8"),
                         "org.apache.axis2:axis2-transports:jar:1.0-i2", 
+                        "org.apache.axis2:axis2-jaxws-api:jar:1.2",
                         "org.apache.ws.security:wss4j:jar:1.5.3", 
                         "org.apache.santuario:xmlsec:jar:1.4.0",
                         "opensaml:opensaml:jar:1.1",
@@ -58,6 +63,7 @@ COMMONS             = struct(
   :collections      =>"commons-collections:commons-collections:jar:3.1",
   :dbcp             =>"commons-dbcp:commons-dbcp:jar:1.2.1",
   :fileupload       =>"commons-fileupload:commons-fileupload:jar:1.1.1",
+#  :httpclient       =>group("commons-httpclient:commons-httpclient:jar:3.0","org.apache.httpcomponents:httpcore:jar:4.0-alpha6"),
   :httpclient       =>"commons-httpclient:commons-httpclient:jar:3.0",
   :lang             =>"commons-lang:commons-lang:jar:2.3",
   :logging          =>"commons-logging:commons-logging:jar:1.1",
@@ -166,7 +172,7 @@ define "ode" do
       "bpel-epr", "bpel-obj", "bpel-ql", "bpel-runtime", "scheduler-simple",
       "bpel-schemas", "bpel-store", "dao-hibernate", "jacob", "jca-ra", "jca-server",
       "utils", "dao-jpa"),
-      AXIS2_ALL, ANNONGEN, BACKPORT, COMMONS.codec, COMMONS.collections, COMMONS.fileupload, COMMONS.io, COMMONS.httpclient,
+      AXIOM, AXIS2_ALL, ANNONGEN, BACKPORT, COMMONS.codec, COMMONS.collections, COMMONS.fileupload, COMMONS.io, COMMONS.httpclient,
       COMMONS.lang, COMMONS.logging, COMMONS.pool, DERBY, DERBY_TOOLS, JAXEN, JAVAX.activation, JAVAX.ejb, JAVAX.javamail,
       JAVAX.connector, JAVAX.jms, JAVAX.persistence, JAVAX.transaction, JAVAX.stream,  JIBX,
       GERONIMO.connector, GERONIMO.kernel, GERONIMO.transaction, LOG4J, OPENJPA, SAXON, TRANQL,
