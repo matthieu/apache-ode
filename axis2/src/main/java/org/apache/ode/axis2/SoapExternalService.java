@@ -273,7 +273,12 @@ public class SoapExternalService implements ExternalService {
                             && !serviceClient.getAxisService().isEngaged("rampart")) {
                         serviceClient.engageModule("rampart");
                     }
-                } finally {
+                    if (!serviceClient.getAxisService().getAxisConfiguration().isEngaged("metadataExchange")
+                            && !serviceClient.getAxisService().isEngaged("metadataExchange")){
+                        serviceClient.engageModule("metadataExchange");
+                    }
+
+                }finally {
                     policyStream.close();
                 }
             } catch (IOException e) {

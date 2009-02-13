@@ -42,7 +42,8 @@ AXIS2_TEST          = [ group("httpcore", "httpcore-nio",
 AXIS2_MODULES        = struct(
  :mods              => ["org.apache.rampart:rampart:mar:1.4", 
                          "org.apache.rampart:rahas:mar:1.4",
-                         "org.apache.axis2:addressing:mar:1.4"],
+                         "org.apache.axis2:addressing:mar:1.4",
+                         "org.apache.axis2:mex:mar:1.41"],
  :libs              => [group("rampart-core", "rampart-policy", "rampart-trust",
                               :under=>"org.apache.rampart",
                               :version=>"1.4"), 
@@ -51,12 +52,12 @@ AXIS2_MODULES        = struct(
                               :version=>"1.0M8"),
                         "org.apache.axis2:axis2-transports:jar:1.0-i2", 
                         "org.apache.axis2:axis2-jaxws-api:jar:1.2",
-                        "org.apache.ws.security:wss4j:jar:1.5.3", 
+                        "org.apache.ws.security:wss4j:jar:1.5.4", 
                         "org.apache.santuario:xmlsec:jar:1.4.0",
                         "opensaml:opensaml:jar:1.1",
                         "bouncycastle:bcprov-jdk15:jar:132"] 
 )
-AXIS2_WAR           = "org.apache.axis2:axis2-webapp:war:1.5-beta-2"
+AXIS2_WAR           = "org.apache.axis2:axis2-webapp:war:1.4.1"
 BACKPORT            = "backport-util-concurrent:backport-util-concurrent:jar:3.0"
 COMMONS             = struct(
   :codec            =>"commons-codec:commons-codec:jar:1.3",
@@ -177,7 +178,7 @@ define "ode" do
       JAVAX.connector, JAVAX.jms, JAVAX.persistence, JAVAX.transaction, JAVAX.stream,  JIBX,
       GERONIMO.connector, GERONIMO.kernel, GERONIMO.transaction, LOG4J, OPENJPA, SAXON, TRANQL,
       WOODSTOX, WSDL4J, WS_COMMONS, XALAN, XERCES, XMLBEANS,
-      AXIS2_MODULES.libs
+      AXIS2_MODULES.libs, AXIS2_MODULES.mods
 
     package(:war).with(:libs=>libs).path("WEB-INF").tap do |web_inf|
       web_inf.merge project("dao-jpa-ojpa-derby").package(:zip)
