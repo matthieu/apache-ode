@@ -178,7 +178,7 @@ define "ode" do
       JAVAX.connector, JAVAX.jms, JAVAX.persistence, JAVAX.transaction, JAVAX.stream,  JIBX,
       GERONIMO.connector, GERONIMO.kernel, GERONIMO.transaction, LOG4J, OPENJPA, SAXON, TRANQL,
       WOODSTOX, WSDL4J, WS_COMMONS, XALAN, XERCES, XMLBEANS,
-      AXIS2_MODULES.libs, AXIS2_MODULES.mods
+      AXIS2_MODULES.libs
 
     package(:war).with(:libs=>libs).path("WEB-INF").tap do |web_inf|
       web_inf.merge project("dao-jpa-ojpa-derby").package(:zip)
@@ -205,7 +205,7 @@ define "ode" do
     end
     
     test.using :testng, :properties=>{ "log4j.debug" => true,  "log4j.configuration"=>"test-log4j.properties" }
-    test.with projects("tools"), libs, AXIS2_TEST, AXIOM, JAVAX.servlet, Buildr::Jetty::REQUIRES, HIBERNATE, DOM4J
+    test.with projects("tools"), libs, AXIS2_MODULES.mods, AXIS2_TEST, AXIOM, JAVAX.servlet, Buildr::Jetty::REQUIRES, HIBERNATE, DOM4J
     test.setup task(:prepare_webapp) do |task|
       webapp_dir = "target/test-classes/webapp"
       cp_r _("src/main/webapp"), _("target/test-classes")
